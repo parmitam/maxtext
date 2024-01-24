@@ -80,6 +80,7 @@ def print_flags(args):
   print(f"Project               (--PROJECT)               = {args.PROJECT}")
   print(f"Zone                  (--ZONE)                  = {args.ZONE}")
   print(f"TPU type              (--TPU_TYPE)              = {args.TPU_TYPE}")
+  print(f"TPU topology          (--TOPO)                  = {args.TPU_TOPO}")
   print(f"TPU runtime version   (--VERSION)               = {args.VERSION}")
   print(f"Number of slices      (--NUM_SLICES)            = {args.NUM_SLICES}")
   print(f"Script dir            (--SCRIPT_DIR)            = {args.SCRIPT_DIR}")
@@ -114,7 +115,7 @@ def move_script_dir_to_gcs(script_dir, tmp_dir, zip_name, bucket_path):
 def run_create_resources(startup_script_file, args):
   """ Run the Create Queued Resources (CQR) request """
   # pylint: disable=line-too-long
-  command = fr'gcloud alpha compute tpus queued-resources create {args.RUN_NAME} --accelerator-type={args.TPU_TYPE} --runtime-version={args.VERSION} --project={args.PROJECT} --zone={args.ZONE}'
+  command = fr'gcloud alpha compute tpus queued-resources create {args.RUN_NAME} --type={args.TPU_TYPE}  --topology={args.TPU_TOPO} --runtime-version={args.VERSION} --project={args.PROJECT} --zone={args.ZONE}'
   if args.NUM_SLICES > 1:
     command = command + f' --node-prefix={args.RUN_NAME} --node-count={args.NUM_SLICES}'
   else:
