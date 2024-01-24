@@ -358,6 +358,9 @@ def main(raw_args=None) -> None:
                       help='GCE zone, e.g. us-central2-b, defaults to gcloud config compute/zone')
   parser.add_argument('--RUN_NAME', type=str, default=None,
                       help='Run name used for temporary files, defaults to timestamp.')
+  parser.add_argument('--TPU_TOPO', type=str, default=None,
+                      help='custom tpu topology, e.g. \
+                      --TPU_TOPO=32x24x8')
   parser.add_argument('--CQR_EXTRA_ARGS', type=str, default=None,
                       help='Additional arguments to be passed verbatim to the CQR request, e.g. \
                       --CQR_EXTRA_ARGS="--reserved --service-account=my-service-account-email-address')
